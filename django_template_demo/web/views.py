@@ -4,4 +4,16 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'common/index.html')
+
+
+def create_employee(request):
+    pass
+
+
+def update_employee(request):
+    pass
+
+
+def delete_employee(request):
+    pass
