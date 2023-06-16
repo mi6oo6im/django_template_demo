@@ -11,9 +11,9 @@ def create_employee(request):
     pass
 
 
-def update_employee(request):
+def update_employee(request, pk):
     pass
 
 
-def delete_employee(request):
+def delete_employee(request, pk):
     pass

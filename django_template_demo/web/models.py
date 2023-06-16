@@ -19,6 +19,10 @@ SENIOR = "Senior"
 
 
 class Employee(models.Model):
+
+    class Meta:
+        sort_order = ('first_name', '-last_name')
+
     EXPERIENCE_LEVEL = (
         (
             JUNIOR, JUNIOR
