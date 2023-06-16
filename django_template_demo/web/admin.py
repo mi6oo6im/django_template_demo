@@ -11,4 +11,4 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'email_address', 'department')
+    list_display = ('first_name', 'last_name', 'email_address', 'department', 'created_on')

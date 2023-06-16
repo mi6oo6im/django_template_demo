@@ -6,7 +6,15 @@ from django.db import models
 from django.template.defaultfilters import first
 
 
-class Department(models.Model):
+class DateInfoMixin(models.Model):
+    class Meta:
+        abstract = True
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+
+class Department(DateInfoMixin):
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -18,10 +26,9 @@ TENURED = "Medium"
 SENIOR = "Senior"
 
 
-class Employee(models.Model):
-
+class Employee(DateInfoMixin):
     class Meta:
-        sort_order = ('first_name', '-last_name')
+        ordering = ('-first_name', 'last_name')
 
     EXPERIENCE_LEVEL = (
         (
