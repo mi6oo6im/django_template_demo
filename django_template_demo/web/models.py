@@ -15,10 +15,18 @@ class DateInfoMixin(models.Model):
 
 
 class Department(DateInfoMixin):
-    name = models.CharField(max_length=20)
+
+    class Meta:
+        ordering = ('pk',)
+
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+                            )
 
     def __str__(self):
-        return self.name + " " + str(self.pk)
+        return self.name + " (" + str(self.pk) + ")"
 
 
 JUNIOR = "Junior"
