@@ -6,7 +6,7 @@ from django_template_demo.web.models import Department, Employee
 
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ["name"]}
 
 
 @admin.register(Employee)
