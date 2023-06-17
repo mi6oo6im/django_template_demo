@@ -17,3 +17,15 @@ def update_employee(request, pk):
 
 def delete_employee(request, pk):
     pass
+
+
+def create_department(request):
+    pass
+
+
+def update_department(request, pk):
+    pass
+
+
+def delete_department(request, pk):
+    pass
