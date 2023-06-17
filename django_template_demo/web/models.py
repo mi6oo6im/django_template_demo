@@ -14,8 +14,7 @@ class DateInfoMixin(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
 
-class Department(DateInfoMixin):
-
+class Department(DateInfoMixin, models.Model):
     class Meta:
         ordering = ('pk',)
 
@@ -23,7 +22,7 @@ class Department(DateInfoMixin):
     slug = models.SlugField(
         max_length=100,
         unique=True,
-                            )
+    )
 
     def __str__(self):
         return self.name + " (" + str(self.pk) + ")"
@@ -34,7 +33,7 @@ TENURED = "Medium"
 SENIOR = "Senior"
 
 
-class Employee(DateInfoMixin):
+class Employee(DateInfoMixin, models.Model):
     class Meta:
         ordering = ('-first_name', 'last_name')
 
@@ -58,3 +57,11 @@ class Employee(DateInfoMixin):
 
     def __str__(self):
         return self.first_name + " " + self.last_name + " level:" + self.seniority
+
+
+class AccessCard(DateInfoMixin, models.Model):
+    employee = models.OneToOneField(
+        Employee,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
