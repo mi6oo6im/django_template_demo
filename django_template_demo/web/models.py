@@ -3,6 +3,7 @@ from random import choices
 from django.db import models
 
 # Create your models here.
+from django.db.models.fields import related
 from django.template.defaultfilters import first
 
 
@@ -12,6 +13,19 @@ class DateInfoMixin(models.Model):
 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+
+class Project(DateInfoMixin, models.Model):
+    project_name = models.CharField(max_length=100)
+    project_description = models.TextField(null=True, blank=True)
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+    )
+    project_deadline = models.DateField()
+
+    def __str__(self):
+        return self.project_name + " " + str(self.pk)
 
 
 class Department(DateInfoMixin, models.Model):
@@ -54,6 +68,7 @@ class Employee(DateInfoMixin, models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     email_address = models.EmailField()
     seniority = models.CharField(choices=EXPERIENCE_LEVEL, max_length=10)
+    assigned_projects = models.ManyToManyField(Project)
 
     def __str__(self):
         return self.first_name + " " + self.last_name + " level:" + self.seniority
